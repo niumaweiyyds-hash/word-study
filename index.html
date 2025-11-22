@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YCL四级备考核心学习站 - L1-1 核心知识</title>
+    <title>YCL四级备考核心学习站 -核心知识</title>
     <!-- 引入 Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -42,33 +42,24 @@
         .speak-btn {
             transition: all 0.2s;
             cursor: pointer;
+            color: #4f46e5;
         }
         .speak-btn:hover {
             transform: scale(1.1);
-            color: #4f46e5; /* Indigo-600 */
+            color: #4338ca; /* Indigo-700 */
         }
         .speak-btn:active {
             transform: scale(0.95);
         }
-        .speak-btn.loading {
-            animation: pulse 1s infinite;
-            color: #9ca3af; /* Gray-400 */
-            cursor: wait;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
         /* 图片展示区容器样式 */
         #knowledge-image-gallery {
-            max-height: 80vh; /* 限制高度，允许垂直滚动 */
+            max-height: 80vh;
             overflow-y: auto;
-            scroll-snap-type: y mandatory; /* 实现类翻页效果 */
+            scroll-snap-type: y mandatory;
         }
         .knowledge-image-container {
             scroll-snap-align: start;
-            min-height: 400px; /* 确保每张图片有足够的空间 */
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -82,6 +73,10 @@
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
+        /* 隐藏加载失败的图片容器 */
+        .hidden-image {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -92,7 +87,7 @@
                 <h1 class="text-3xl font-extrabold text-indigo-500 m-0">
                     <span class="text-pink-400 mr-2">🌟</span> YCL四级核心学习站
                 </h1>
-                <p class="text-sm text-gray-400 mt-1 font-medium">L1-1 Python基础：输入/输出与变量</p>
+                <p class="text-sm text-gray-400 mt-1 font-medium">本阶段Python基础：输入/输出与变量</p>
             </div>
         </header>
 
@@ -130,7 +125,7 @@
                 <!-- 2. 英语单词 (读+背区分) -->
                 <section id="vocabulary-section" class="mb-10">
                     <h2 class="text-xl font-bold text-gray-700 border-b-2 border-yellow-300 pb-2 mb-6 flex items-center">
-                        <span class="text-2xl mr-2 text-yellow-500">📖</span> L1-1 核心词汇
+                        <span class="text-2xl mr-2 text-yellow-500">📖</span> 本阶段核心词汇
                     </h2>
                     <div class="cute-card bg-white p-5 border-l-8 border-yellow-400">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -144,7 +139,7 @@
                                     </div>
                                     <p class="text-xs text-red-600 font-semibold">n./v. 输入 (获取数据)</p>
                                 </div>
-                                <button onclick="speakWord('input')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('input')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-red-100 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
@@ -154,7 +149,7 @@
                                     </div>
                                     <p class="text-xs text-red-600 font-semibold">n. 整数 (数据类型)</p>
                                 </div>
-                                <button onclick="speakWord('int')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('int')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
@@ -164,19 +159,19 @@
                                     </div>
                                     <p class="text-xs text-gray-500">v.打印,输出</p>
                                 </div>
-                                <button onclick="speakWord('print')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('print')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             
-                            <!-- 条件语句关键词 (L1-2) -->
+                            <!-- 条件语句关键词 -->
                             <div class="p-3 bg-indigo-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
                                     <div class="flex items-baseline space-x-1">
                                         <p class="text-lg font-bold text-indigo-800">if</p>
                                         <p class="text-sm font-medium text-red-500">[ɪf]</p>
                                     </div>
-                                    <p class="text-xs text-indigo-600 font-semibold">conj. 如果 (条件判断)</p>
+                                    <p class="text-xs text-indigo-600 font-semibold">conj. 如果</p>
                                 </div>
-                                <button onclick="speakWord('if')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('if')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-indigo-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
@@ -184,9 +179,9 @@
                                         <p class="text-lg font-bold text-indigo-800">else</p>
                                         <p class="text-sm font-medium text-red-500">[els]</p>
                                     </div>
-                                    <p class="text-xs text-indigo-600 font-semibold">conj. 否则 (条件判断)</p>
+                                    <p class="text-xs text-indigo-600 font-semibold">conj. 否则</p>
                                 </div>
-                                <button onclick="speakWord('else')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('else')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-indigo-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
@@ -196,7 +191,7 @@
                                     </div>
                                     <p class="text-xs text-indigo-600 font-semibold">conj. 否则如果</p>
                                 </div>
-                                <button onclick="speakWord('elif')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('elif')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
 
                             <!-- 布尔值 -->
@@ -208,7 +203,7 @@
                                     </div>
                                     <p class="text-xs text-purple-600 font-semibold">bool. 真</p>
                                 </div>
-                                <button onclick="speakWord('True')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('True')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-purple-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
@@ -218,7 +213,7 @@
                                     </div>
                                     <p class="text-xs text-purple-600 font-semibold">bool. 假</p>
                                 </div>
-                                <button onclick="speakWord('False')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('False')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
 
                             <!-- 其他常用词汇 -->
@@ -227,48 +222,48 @@
                                     <p class="text-lg font-bold text-gray-800">weight</p>
                                     <p class="text-xs text-gray-500">n.重量</p>
                                 </div>
-                                <button onclick="speakWord('weight')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('weight')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
                                     <p class="text-lg font-bold text-gray-800">height</p>
                                     <p class="text-xs text-gray-500">n.高度</p>
                                 </div>
-                                <button onclick="speakWord('height')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('height')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
                                     <p class="text-lg font-bold text-gray-800">left</p>
                                     <p class="text-xs text-gray-500">n.左</p>
                                 </div>
-                                <button onclick="speakWord('left')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('left')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
                                     <p class="text-lg font-bold text-gray-800">right</p>
                                     <p class="text-xs text-gray-500">n.右</p>
                                 </div>
-                                <button onclick="speakWord('right')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('right')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
                                     <p class="text-lg font-bold text-gray-800">up</p>
                                     <p class="text-xs text-gray-500">n.上</p>
                                 </div>
-                                <button onclick="speakWord('up')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('up')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                             <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
                                 <div>
                                     <p class="text-lg font-bold text-gray-800">down</p>
                                     <p class="text-xs text-gray-500">adv.下</p>
                                 </div>
-                                <button onclick="speakWord('down')" class="speak-btn p-2 rounded-full bg-white shadow-md text-gray-600">🔊</button>
+                                <button onclick="speakWord('down')" class="speak-btn p-2 rounded-full bg-white shadow-md">🔊</button>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- 3. 知识点与例题精讲 -->
+                <!-- 3. 知识点 -->
                 <section id="knowledge-section" class="mb-10">
                     <h2 class="text-xl font-bold text-gray-700 border-b-2 border-cyan-300 pb-2 mb-6 flex items-center">
                         <span class="text-2xl mr-2 text-cyan-500">💡</span> 本阶段已学知识点
@@ -282,7 +277,7 @@
                         <ol class="list-decimal space-y-3 ml-4 text-gray-700">
                             <li>
                                 <p class="font-bold">print()命令：</p>
-                                <p class="text-sm">print是打印的意思。这个命令由英文单词 `print` 和一对英文小括号组成，在括号中填入内容，就能将括号中的内容打印到输出区。</p>
+                                <p class="text-sm">print是打印的意思。用于将内容输出到屏幕上。</p>
                             </li>
                             <li>
                                 <p class="font-bold">print()命令的规则：</p>
@@ -290,11 +285,11 @@
                             </li>
                             <li>
                                 <p class="font-bold">变量：</p>
-                                <p class="text-sm">变量就像一个盒子，可以存储各种各样的数据。只需要使用一个等号，就可以将数据装进盒子里。</p>
+                                <p class="text-sm">变量就像一个盒子，可以存储数据。只需要使用一个等号 `=` 进行赋值。</p>
                             </li>
                             <li>
                                 <p class="font-bold">变量的规则：</p>
-                                <p class="text-sm">规则1：使用 print() 语句打印变量时，变量两侧**不需要**加上引号。规则2：我们可以在程序中反复使用变量，也可以使用变量进行数学运算。</p>
+                                <p class="text-sm">使用 print() 语句打印变量时，变量两侧**不需要**加上引号。</p>
                             </li>
                         </ol>
                         
@@ -302,26 +297,29 @@
                              <h4 class="font-bold text-rose-600 mb-2">⚠️ 重难点强调</h4>
                              <ul class="list-disc ml-4 text-sm text-gray-600 space-y-1">
                                 <li>print()命令打印文字时，文字两侧要加上**单引号**或**双引号**。</li>
-                                <li>**input()** 函数接受的任何输入都是**字符串**类型，如果需要进行数学运算，必须使用 **int()** 或 **float()** 进行转换。</li>
+                                <li>**input()** 函数接受的任何输入都是**字符串**类型。如果需要进行数学运算（如相加），必须使用 **int()** 将其转换为整数。</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- 交互式 例题练习卡片 (10题) -->
+                    <!-- 交互式 例题练习卡片 (10题 - 基于真题库) -->
                     <h3 id="questionnaire" class="text-xl font-extrabold text-indigo-700 mb-4 flex items-center mt-10">
                         <span class="text-2xl mr-2">🎯</span> 课本例题练习 (共10题)
                     </h3>
 
                     <div class="space-y-6" id="questionnaire-content">
                         
-                        <!-- 例题 1 -->
+                        <!-- Q1: 基础计算 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q1">
-                            <p class="font-semibold text-gray-800 mb-4">1. 下列选项中, 能够正确打印出“小明”的是（ ）</p>
+                            <p class="font-semibold text-gray-800 mb-4">1. 运行下面的代码，输出的结果是？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">s = 45
+t = 55
+print(s + t)</pre>
                             <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q1', 'A', 'B', 'PRINT 必须是小写字母 print。')">A. PRINT('小明')</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q1', 'B', 'B', 'print 命令小写，并且打印文字用引号包裹，格式正确。')">B. print('小明')</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q1', 'C', 'B', '缺少英文小括号，格式错误。')">C. print'小明'</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q1', 'D', 'B', '打印文字需要加上引号，否则程序会认为“小明”是一个变量。')">D. print(小明)</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q1', 'A', 'C', 's和t都是整数。')">A. 4555</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q1', 'B', 'C', '变量名不会被直接输出。')">B. s + t</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q1', 'C', 'C', '正确。整数进行加法运算：45 + 55 = 100。')">C. 100</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q1', 'D', 'C', '不只输出 t 的值。')">D. 55</div>
                             </div>
                             <div id="explanation-q1" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -330,16 +328,18 @@
                             </div>
                         </div>
 
-                        <!-- 例题 2 -->
+                        <!-- Q2: 变量更新 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q2">
-                            <p class="font-semibold text-gray-800 mb-4">2. 执行下列代码, 输出的结果是( )</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 n = 12
-2 print(n)</pre>
-                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q2', 'A', 'B', 'print(n)会打印出变量n存储的值12，而不是变量名n。')">A. n</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q2', 'B', 'B', 'n 存储了整数 12，print(n) 直接打印其值 12。')">B. 12</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q2', 'C', 'B', '只有在 print("12") 时才会输出带引号的字符串。')">C. '12'</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q2', 'D', 'B', '输出结果只包含值，不会包含赋值语句。')">D. n=12</div>
+                            <p class="font-semibold text-gray-800 mb-4">2. 小阳有8个苹果，送给小星2个，自己又吃掉3个。横线处填什么表示自己吃掉3个？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">apples = 8
+apples = apples - 2 # 送人
+__________          # 吃掉3个
+print(apples)</pre>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q2', 'A', 'B', '这只是一个表达式，没有更新 apples 变量的值。')">A. apples - 3</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q2', 'B', 'B', '正确。将 apples 减去 3 后的结果重新赋值给 apples。')">B. apples = apples - 3</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q2', 'C', 'B', '吃掉应该是减少，不是增加。')">C. apples = apples + 3</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q2', 'D', 'B', '这会将苹果数量直接变为 3，不符合题意。')">D. apples = 3</div>
                             </div>
                             <div id="explanation-q2" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -348,17 +348,17 @@
                             </div>
                         </div>
 
-                        <!-- 例题 3 -->
+                        <!-- Q3: 类型转换 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q3">
-                            <p class="font-semibold text-gray-800 mb-4">3. 下方代码的横线上填写____, 可以依次打印出20和40。</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 print(20)
-2 _______
-3 print(a)</pre>
-                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q3', 'A', 'B', '如果 a=20，程序会先打印 20，接着打印 a 的值 20，不符合题目要求。')">A. a=20</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q3', 'B', 'B', '第一行打印 20，第二行将 40 存入变量 a，第三行打印 a 的值 40，符合题目要求。')">B. a=40</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q3', 'C', 'B', '变量名为 n，与 print(a) 中的变量名不一致，a 未赋值会报错。')">C. n=40</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q3', 'D', 'B', 'print("20") 会输出字符串 "20"，且变量 a 未赋值会报错。')">D. print('20')</div>
+                            <p class="font-semibold text-gray-800 mb-4">3. 以下代码的输出是？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">s = '11'
+t = int(s) + 4
+print(t)</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q3', 'A', 'C', 's 转换为了整数，所以会进行数学加法。')">A. 11</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q3', 'B', 'C', 's 已经用 int() 转换成了整数，不是字符串拼接。')">B. 114</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q3', 'C', 'C', '正确。int(\'11\') 变成整数 11，11 + 4 = 15。')">C. 15</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q3', 'D', 'C', '代码语法正确，不会报错。')">D. 报错</div>
                             </div>
                             <div id="explanation-q3" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -367,15 +367,16 @@
                             </div>
                         </div>
 
-                        <!-- 例题 4 -->
+                        <!-- Q4: Input 陷阱 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q4">
-                            <p class="font-semibold text-gray-800 mb-4">4. 执行代码 `print('YCL' * 3)` 的结果是（ ）</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print('YCL' * 3)</pre>
+                            <p class="font-semibold text-gray-800 mb-4">4. 运行下列代码，输入 "12" 后，输出结果是？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">a = input()
+print(a + 8)</pre>
                             <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q4', 'A', 'B', '字符串乘以整数表示重复该字符串，即 YCL 打印 3 次。')">A. YCL3</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q4', 'B', 'B', '字符串乘以整数表示重复该字符串，正确答案是 YCLYCLYCL。')">B. YCLYCLYCL</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q4', 'C', 'B', 'Python 会进行运算，不会原样输出算式。')">C. YCL * 3</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q4', 'D', 'B', '字符串乘法是合法的 Python 语法。')">D. 错误</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q4', 'A', 'D', 'input() 返回字符串，不能直接和整数相加。')">A. 12</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q4', 'B', 'D', 'input() 返回字符串，不能直接和整数相加。')">B. 128</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q4', 'C', 'D', 'input() 返回字符串，必须先 int() 才能计算。')">C. 20</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q4', 'D', 'D', '正确。input() 得到字符串 "12"，字符串不能与数字 8 直接相加，会报错。')">D. 程序报错</div>
                             </div>
                             <div id="explanation-q4" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -384,17 +385,14 @@
                             </div>
                         </div>
 
-                        <!-- 例题 5 -->
+                        <!-- Q5: 字符串打印 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q5">
-                            <p class="font-semibold text-gray-800 mb-4">5. 执行下列代码后，`print(score)` 的输出结果是（ ）</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 score = 10
-2 score = 50 - 30
-3 score = 30</pre>
-                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q5', 'A', 'C', '变量会被最后一次赋值覆盖。')">A. 10</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q5', 'B', 'C', '第二行 score = 20，但第三行又被覆盖为 30。')">B. 20</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q5', 'C', 'C', 'Python 代码按顺序执行，变量遵循“后赋有效”原则，最终值为 30。')">C. 30</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q5', 'D', 'C', '不会计算所有赋值的总和。')">D. 60</div>
+                            <p class="font-semibold text-gray-800 mb-4">5. 下列哪段代码可以正确输出“考试顺利”？</p>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q5', 'A', 'C', 'print() 括号内不能为空。')">A. print()</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q5', 'B', 'C', '缺少 print 命令。')">B. 考试顺利</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q5', 'C', 'C', '正确。print() 命令且字符串加了引号。')">C. print('考试顺利')</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q5', 'D', 'C', '缺少 print 命令。')">D. '考试顺利'</div>
                             </div>
                             <div id="explanation-q5" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -403,14 +401,14 @@
                             </div>
                         </div>
 
-                        <!-- 例题 6 -->
+                        <!-- Q6: 字符串拼接 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q6">
-                            <p class="font-semibold text-gray-800 mb-4">6. 下列选项中，哪个**不是**一个合法的变量名（ ）</p>
-                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q6', 'A', 'B', '变量名不能以数字开头。')">A. my_name</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q6', 'B', 'B', '变量名不能以数字开头，因此 1st_rank 是非法的。')">B. 1st_rank</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q6', 'C', 'B', '合法的变量名可以包含字母、数字和下划线，但不允许空格或减号等特殊符号。')">C. user rank</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q6', 'D', 'B', '合法的变量名可以包含字母、数字和下划线。')">D. total2</div>
+                            <p class="font-semibold text-gray-800 mb-4">6. 执行代码 `print('四级' + '通关')` 的结果是？</p>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q6', 'A', 'C', '字符串相加是拼接。')">A. 四级</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q6', 'B', 'C', '字符串相加是拼接。')">B. 通关</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q6', 'C', 'C', '正确。加号 (+) 将两个字符串连接在一起。')">C. 四级通关</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q6', 'D', 'C', '不会输出加号。')">D. 四级+通关</div>
                             </div>
                             <div id="explanation-q6" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -419,17 +417,16 @@
                             </div>
                         </div>
 
-                        <!-- 例题 7 -->
+                        <!-- Q7: 变量拼接 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q7">
-                            <p class="font-semibold text-gray-800 mb-4">7. 如果用户输入 `5`，执行下列代码的输出结果是（ ）</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 num = input() # 用户输入 5
-2 num = int(num)
-3 print(num + 5)</pre>
-                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q7', 'A', 'D', 'input() 得到 "5"，int("5") 转换成整数 5，然后 5 + 5 = 10。')">A. 55</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q7', 'B', 'D', 'input() 得到 "5"，int("5") 转换成整数 5，然后 5 + 5 = 10。')">B. 5</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q7', 'C', 'D', '如果只执行 print("5" + 5)，会因为类型不同而报错。但这里用 int() 转换了。')">C. 错误</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q7', 'D', 'D', 'input() 得到字符串 "5"，第 2 行将其转换为整数 5，第 3 行计算 5 + 5 = 10。')">D. 10</div>
+                            <p class="font-semibold text-gray-800 mb-4">7. 执行下列代码，输入 'YCL加油'，输出结果为？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">n = input()
+print(n + n)</pre>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q7', 'A', 'C', 'n 是变量，不会输出 nn。')">A. nn</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q7', 'B', 'C', '不会输出算式。')">B. n + n</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q7', 'C', 'C', '正确。输入是字符串，+ 号将两个相同的字符串拼接：YCL加油YCL加油。')">C. YCL加油YCL加油</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q7', 'D', 'C', '字符串相加是拼接，不是只输出一个。')">D. YCL加油</div>
                             </div>
                             <div id="explanation-q7" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -438,15 +435,18 @@
                             </div>
                         </div>
 
-                        <!-- 例题 8 -->
+                        <!-- Q8: 循环基础 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q8">
-                            <p class="font-semibold text-gray-800 mb-4">8. 执行代码 `print('距离', 100, '米')` 的输出结果是（ ）</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print('距离', 100, '米')</pre>
-                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q8', 'A', 'B', 'print()函数用逗号分隔多个内容时，默认会用空格连接。')">A. 距离100米</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q8', 'B', 'B', 'print() 使用逗号分隔多个参数时，会在参数之间自动添加一个空格。')">B. 距离 100 米</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q8', 'C', 'B', '参数必须用逗号分隔，否则会报错。')">C. 距离+100+米</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q8', 'D', 'B', 'print() 会打印出所有内容，而不是只打印数字。')">D. 100</div>
+                            <p class="font-semibold text-gray-800 mb-4">8. 运行下列代码，可以输出几行“go”？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">for i in range(5):
+    print('go')
+    print('go')
+print('go')</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q8', 'A', 'C', '不止3行。')">A. 3</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q8', 'B', 'C', '循环内有两行 print，5 * 2 = 10，再加上外面一行。')">B. 10</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q8', 'C', 'C', '正确。循环5次，每次打印2行(共10行)，循环结束后再打印1行，合计11行。')">C. 11</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q8', 'D', 'C', '最后一行没有缩进，不在循环内。')">D. 15</div>
                             </div>
                             <div id="explanation-q8" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -455,15 +455,18 @@
                             </div>
                         </div>
 
-                        <!-- 例题 9 -->
+                        <!-- Q9: 字符串循环拼接 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q9">
-                            <p class="font-semibold text-gray-800 mb-4">9. 执行代码 `print('A' * 3 + 'B' * 2)` 的输出结果是（ ）</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print('A' * 3 + 'B' * 2)</pre>
-                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q9', 'A', 'C', '字符串乘法是重复，加法是连接，结果是 AAABB。')">A. AAAAA</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q9', 'B', 'C', '字符串重复后再连接：\'A\'*3 得到 \'AAA\'，\'B\'*2 得到 \'BB\'，连接后是 AAABB。')">B. 3A2B</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q9', 'C', 'C', '首先计算重复：\'A\'*3 = \'AAA\'，\'B\'*2 = \'BB\'。然后连接：\'AAA\' + \'BB\' = \'AAABB\'。')">C. AAABB</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q9', 'D', 'C', '字符串乘法是重复，不是乘积 6。')">D. 6</div>
+                            <p class="font-semibold text-gray-800 mb-4">9. 运行这段程序，输出的结果是？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">t = 'Keep'
+for j in range(2):
+    t = t + 'Going'
+print(t)</pre>
+                            <div class="grid grid-cols-1 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q9', 'A', 'B', '只循环2次。')">A. KeepGoingGoingGoing</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q9', 'B', 'B', '正确。循环2次，每次都在末尾拼接一个 Going，所以是 Keep + Going + Going。')">B. KeepGoingGoing</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q9', 'C', 'B', '循环了2次。')">C. KeepGoing</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q9', 'D', 'B', 't 初始值是 Keep。')">D. Going</div>
                             </div>
                             <div id="explanation-q9" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -471,17 +474,18 @@
                                 <p class="text-gray-700 mt-1 explanation-text"></p>
                             </div>
                         </div>
-                        
-                        <!-- 例题 10 -->
+
+                        <!-- Q10: 综合判断 -->
                         <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q10">
-                            <p class="font-semibold text-gray-800 mb-4">10. 执行下列代码会发生什么（ ）</p>
-                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 print(count)
-2 count = 100</pre>
+                            <p class="font-semibold text-gray-800 mb-4">10. 如果输入“逢考必过”，想输出“YES”，横线处应填？</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">a = input()
+if __________:
+    print('YES')</pre>
                             <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q10', 'A', 'C', 'Python 代码按顺序从上往下执行。')">A. 输出 100</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q10', 'B', 'C', '变量 x 尚未被赋值（定义），程序会在第一行执行时立即报错。')">B. 输出 count</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q10', 'C', 'C', '代码在第 1 行执行时，变量 count 还没有被赋值，会引发 NameError（名称错误），程序终止。')">C. 程序报错</div>
-                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q10', 'D', 'C', '变量 x 尚未被赋值，Python 不会自动将未赋值的变量初始化。')">D. 输出 0</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q10', 'A', 'D', '需要判断条件，不仅仅是变量。')">A. a</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q10', 'B', 'D', '缺少变量 a。')">B. '逢考必过'</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q10', 'C', 'D', '单个等号 = 是赋值，判断相等要用双等号 ==。')">C. a = '逢考必过'</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q10', 'D', 'D', '正确。判断变量 a 的值是否等于字符串 "逢考必过"，需要使用 ==。')">D. a == '逢考必过'</div>
                             </div>
                             <div id="explanation-q10" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
                                 <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
@@ -501,11 +505,12 @@
                     <div class="cute-card bg-gray-50 p-6 border-t-8 border-green-400">
                         <p class="text-sm text-gray-600 mb-4">
                             您可以在下方区域查看所有上传的知识点图片 (.jpg, .png, .jpeg)，上下滑动即可翻页。
+                            <br/><span class="text-xs text-gray-400">(请确保图片文件名为英文或数字，例如 1.jpg, 2.png)</span>
                         </p>
                         <div id="knowledge-image-gallery" class="space-y-6">
                             <!-- 图片将由 JavaScript 加载到这里 -->
                             <div class="text-center p-10 text-gray-500">
-                                正在加载图片...
+                                正在扫描并加载图片...
                             </div>
                         </div>
                     </div>
@@ -545,214 +550,121 @@
         </footer>
     </div>
 
-    <!-- JavaScript 交互逻辑 (包含 TTS 功能) -->
+    <!-- JavaScript 交互逻辑 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             loadKnowledgeImages();
-            // 确保导航链接在DOM加载后立即生效
             setupNavigation();
         });
 
-        // 模拟的文件列表，用于展示图片功能。
-        const MOCK_IMAGE_FILES = [
-            'image_28cce6.png',
-            'knowledge_point_1.jpg',
-            'knowledge_point_2.png',
-            'sample_chart.jpeg'
-        ];
+        // --- TTS Functionality (Browser Native) ---
+        // 使用浏览器自带的 SpeechSynthesis，无需 API Key，无 401 错误，永久免费且稳定。
+        function speakWord(word) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'en-US'; // 设置为美式英语
+                utterance.rate = 0.9;     // 语速稍慢，适合学习
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('您的浏览器不支持语音朗读功能，请尝试使用 Chrome 或 Edge 浏览器。');
+            }
+        }
 
-        /**
-         * 动态加载知识点图片到展示区。
-         */
+        // --- Image Gallery Logic ---
         function loadKnowledgeImages() {
             const gallery = document.getElementById('knowledge-image-gallery');
-            gallery.innerHTML = ''; // 清空加载提示
+            gallery.innerHTML = ''; 
 
-            const imageFiles = MOCK_IMAGE_FILES.filter(file => 
-                file.endsWith('.jpg') || file.endsWith('.png') || file.endsWith('.jpeg')
-            );
-
-            if (imageFiles.length === 0) {
-                gallery.innerHTML = `
-                    <div class="text-center p-10 text-gray-500 bg-white rounded-xl">
-                        <span class="text-4xl block mb-2">😭</span>
-                        <p class="font-semibold">未找到任何知识点图片。</p>
-                        <p class="text-sm">请上传 .jpg, .png 或 .jpeg 文件到根目录。</p>
-                    </div>
-                `;
-                return;
+            // 预设可能的文件名列表 (1.jpg ~ 20.jpg, 以及 png/jpeg 变体)
+            // 这是静态 HTML "扫描" 文件的唯一方法
+            const potentialFiles = [];
+            for(let i = 1; i <= 20; i++) {
+                potentialFiles.push(`${i}.jpg`, `${i}.png`, `${i}.jpeg`);
             }
+            // 添加一些常用名
+            potentialFiles.push('image_28cce6.png', 'knowledge.jpg', 'summary.png');
 
-            imageFiles.forEach((file, index) => {
+            let foundImages = 0;
+
+            potentialFiles.forEach((file) => {
+                const img = new Image();
+                img.src = file;
+                img.className = 'knowledge-image';
+                img.alt = '知识点图片';
+                
+                // 创建容器
                 const container = document.createElement('div');
-                container.className = 'knowledge-image-container mb-8 p-4 bg-white rounded-2xl shadow-lg';
-                container.innerHTML = `
-                    <p class="text-sm text-indigo-500 font-bold mb-3">图片 ${index + 1} / ${imageFiles.length} (${file})</p>
-                    <img src="./${file}" 
-                         alt="知识点图片 ${index + 1}" 
-                         class="knowledge-image" 
-                         loading="lazy"
-                         onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFD1DC/6B46C1?text=图片加载失败: ${file}'"
-                    />
-                `;
+                container.className = 'knowledge-image-container hidden-image'; // 默认隐藏
+                container.innerHTML = `<p class="text-xs text-gray-400 mb-2">${file}</p>`;
+                container.appendChild(img);
                 gallery.appendChild(container);
+
+                // 只有图片加载成功时才显示
+                img.onload = function() {
+                    container.classList.remove('hidden-image'); // 显示图片
+                    foundImages++;
+                    // 如果这是第一张加载成功的图片，移除“正在扫描”提示（如果有的话）
+                    const loadingMsg = gallery.querySelector('.loading-msg');
+                    if (loadingMsg) loadingMsg.remove();
+                };
+                
+                // 加载失败则保持隐藏 (不报错)
+                img.onerror = function() {
+                    // 静默失败，保持 hidden-image 类
+                };
             });
+
+            // 添加初始提示
+            const msg = document.createElement('div');
+            msg.className = 'loading-msg text-center p-10 text-gray-500';
+            msg.innerHTML = '<p>正在扫描根目录图片...</p><p class="text-xs mt-2">请确保图片命名为 1.jpg, 2.png 等简单名称</p>';
+            gallery.prepend(msg);
         }
         
-        /**
-         * 修复底部导航栏的滚动功能。
-         */
+        // --- Navigation Logic ---
         function setupNavigation() {
             document.querySelectorAll('footer a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    // 阻止默认的哈希跳转行为
                     e.preventDefault();
-
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-
                     if (targetElement) {
-                        // 使用平滑滚动到目标元素
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start' // 滚动到元素的顶部
-                        });
+                        // 修正底部导航栏遮挡
+                        const y = targetElement.getBoundingClientRect().top + window.scrollY - 80; 
+                        window.scrollTo({top: y, behavior: 'smooth'});
                     }
                 });
             });
         }
 
-        // --- TTS API Logic (保留代码供外部部署使用) ---
-        const API_KEY = ""; // 外部部署时填入您的 API Key
-
-        function base64ToArrayBuffer(base64) {
-            const binaryString = atob(base64);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
-            }
-            return bytes.buffer;
-        }
-
-        function pcmToWav(pcm16, sampleRate) {
-            const numChannels = 1;
-            const bitsPerSample = 16;
-            const byteRate = numChannels * sampleRate * (bitsPerSample / 8);
-            const blockAlign = numChannels * (bitsPerSample / 8);
-            const buffer = new ArrayBuffer(44 + pcm16.length * 2);
-            const view = new DataView(buffer);
-            let offset = 0;
-            const writeString = (s) => { for (let i = 0; i < s.length; i++) view.setUint8(offset + i, s.charCodeAt(i)); offset += s.length; };
-            
-            writeString('RIFF'); offset += 4;
-            view.setUint32(offset, 36 + pcm16.length * 2, true); offset += 4;
-            writeString('WAVE'); offset += 4;
-            writeString('fmt '); offset += 4;
-            view.setUint32(offset, 16, true); offset += 4;
-            view.setUint16(offset, 1, true); offset += 2;
-            view.setUint16(offset, numChannels, true); offset += 2;
-            view.setUint32(offset, sampleRate, true); offset += 4;
-            view.setUint32(offset, byteRate, true); offset += 4;
-            view.setUint16(offset, blockAlign, true); offset += 2;
-            view.setUint16(offset, bitsPerSample, true); offset += 2;
-            writeString('data'); offset += 4;
-            view.setUint32(offset, pcm16.length * 2, true); offset += 4;
-            for (let i = 0; i < pcm16.length; i++) { view.setInt16(offset + i * 2, pcm16[i], true); }
-            return new Blob([buffer], { type: 'audio/wav' });
-        }
-
-        async function speakWord(word) {
-            console.log("TTS 调用开始: " + word);
-            const API_MODEL = "gemini-2.5-flash-preview-tts";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${API_MODEL}:generateContent?key=${API_KEY}`;
-            
-            const payload = {
-                contents: [{ parts: [{ text: word }] }],
-                generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } } }
-            };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-                });
-                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-                const result = await response.json();
-                const audioData = result?.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
-                if (audioData) {
-                    const pcm16 = new Int16Array(base64ToArrayBuffer(audioData));
-                    const wavBlob = pcmToWav(pcm16, 24000); // 假设采样率为 24000
-                    const audio = new Audio(URL.createObjectURL(wavBlob));
-                    audio.play();
-                }
-            } catch (error) {
-                console.error("TTS Error:", error);
-                // 在这里不显示 alert，以免打扰用户，只记录日志
-            }
-        }
-
-        /**
-         * 检查选择的答案并更新 UI。
-         */
+        // --- Quiz Logic ---
         function checkAnswer(questionId, selectedOption, correctAnswer, explanation) {
-            // 找到当前问题容器
             const questionElement = document.querySelector(`[data-question-id="${questionId}"]`);
-            if (!questionElement) return;
-
-            // 检查是否已经作答
-            if (questionElement.dataset.answered === 'true') {
-                return; // 已经回答过了，忽略点击
-            }
+            if (!questionElement || questionElement.dataset.answered === 'true') return;
             
-            // 标记已作答，防止重复点击
             questionElement.dataset.answered = 'true';
-
-            // 找到所有选项、答案解析区
             const options = questionElement.querySelectorAll('.option-item');
             const explanationBlock = document.getElementById(`explanation-${questionId}`);
-            
             let isCorrect = selectedOption === correctAnswer;
 
-            // 遍历所有选项并处理样式
             options.forEach(option => {
                 const optionLabel = option.dataset.option;
-                option.classList.remove('cursor-pointer', 'hover:bg-indigo-100', 'bg-gray-50'); // 移除交互样式
-
+                option.classList.remove('cursor-pointer', 'hover:bg-indigo-100');
+                
                 if (optionLabel === selectedOption) {
-                    // 处理用户选择的选项
                     if (isCorrect) {
-                        // 选择了正确答案
-                        option.classList.add('bg-green-300', 'text-green-900', 'font-bold', 'ring-2', 'ring-green-600');
+                        option.classList.add('bg-green-100', 'text-green-800', 'font-bold', 'border-2', 'border-green-500');
                     } else {
-                        // 选择了错误答案
-                        option.classList.add('bg-red-300', 'text-red-900', 'font-bold', 'line-through', 'ring-2', 'ring-red-600');
+                        option.classList.add('bg-red-100', 'text-red-800', 'line-through', 'opacity-75');
                     }
                 } else if (optionLabel === correctAnswer) {
-                    // 正确答案
-                    option.classList.add('bg-green-100', 'text-green-700', 'font-semibold', 'ring-1', 'ring-green-500');
-                } else {
-                    // 其他未选的错误答案
-                    option.classList.add('bg-gray-200', 'text-gray-400');
+                    option.classList.add('bg-green-50', 'text-green-700', 'border', 'border-green-300');
                 }
             });
 
-            // 更新解析区内容并显示
-            const colorClass = isCorrect ? 'bg-green-50 border-green-400' : 'bg-red-50 border-red-400';
-            const labelColorClass = isCorrect ? 'text-green-600' : 'text-red-600';
-            const icon = isCorrect ? '✅' : '❌';
-            
-            // 设置解析区样式
-            explanationBlock.classList.remove('bg-green-50', 'bg-red-50', 'border-green-400', 'border-red-400');
-            explanationBlock.classList.add(colorClass);
-            
-            // 设置标题和答案
-            explanationBlock.querySelector('.font-bold.text-green-700').innerHTML = `${icon} ${isCorrect ? '恭喜你，回答正确！' : '回答错误，再回顾一下知识点吧！'}`;
+            explanationBlock.querySelector('.font-bold.text-green-700').innerHTML = isCorrect ? '🎉 回答正确！' : '❌ 回答错误';
             explanationBlock.querySelector('.correct-option-label').textContent = correctAnswer;
-            explanationBlock.querySelector('.correct-option-label').classList.remove('text-green-600', 'text-red-600');
-            explanationBlock.querySelector('.correct-option-label').classList.add(labelColorClass);
             explanationBlock.querySelector('.explanation-text').textContent = explanation;
-
-            // 显示解析区
             explanationBlock.classList.remove('hidden');
         }
     </script>
