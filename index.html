@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L1-1 赛考冲刺站 - Python基础</title>
-    <!-- 引入 Tailwind CSS CDN，这是确保样式加载最可靠的方式 -->
+    <title>YCL四级备考攻略 - 核心知识</title>
+    <!-- 引入 Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* 确保中文字体优先，同时使用 Inter 字体 */
         body {
             font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background-color: #f7f9fc; /* 轻微的背景色 */
+            background-color: #fefdfd; /* 接近白色，更干净可爱 */
+            scroll-behavior: smooth; /* 启用平滑滚动 */
         }
         /* 确保页面主体始终至少占据整个视口高度 */
         #app-container {
@@ -18,85 +19,472 @@
             display: flex;
             flex-direction: column;
         }
-        /* 固定底部的样式，使用 box-shadow 提升视觉效果 */
+        /* 固定底部的样式，使用柔和的投影 */
         .fixed-footer {
-            box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1), 0 -2px 4px -2px rgb(0 0 0 / 0.1);
+            box-shadow: 0 -8px 15px -3px rgba(181, 191, 237, 0.3), 0 -4px 6px -2px rgba(181, 191, 237, 0.2);
+        }
+        /* 自定义可爱风的圆角和阴影 */
+        .cute-card {
+            border-radius: 1.5rem; /* 很大的圆角 */
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹簧效果 */
+            box-shadow: 0 8px 20px rgba(159, 172, 231, 0.15);
+        }
+        .cute-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(159, 172, 231, 0.25);
+        }
+        /* 选项样式 */
+        .option-item {
+            transition: background-color 0.15s;
+            user-select: none; /* 防止文本被选中 */
+        }
+        .tts-disabled-button {
+            opacity: 0.6;
+            cursor: not-allowed;
+            filter: grayscale(100%);
+        }
+        /* 图片展示区容器样式 */
+        #knowledge-image-gallery {
+            max-height: 80vh; /* 限制高度，允许垂直滚动 */
+            overflow-y: auto;
+            scroll-snap-type: y mandatory; /* 实现类翻页效果 */
+        }
+        .knowledge-image-container {
+            scroll-snap-align: start;
+            min-height: 400px; /* 确保每张图片有足够的空间 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .knowledge-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    <div id="app-container" class="pb-16">
+    <div id="app-container" class="pb-20">
         <!-- 顶部标题和科目信息 -->
-        <header class="bg-white shadow-lg sticky top-0 z-10 border-b border-indigo-100">
+        <header id="top" class="bg-white sticky top-0 z-10 border-b-4 border-pink-100">
             <div class="max-w-3xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-                <h1 class="text-2xl font-extrabold text-indigo-700 m-0 sm:text-3xl">L1-1 赛考冲刺站</h1>
-                <p class="text-sm text-gray-500 mt-1">Python基础</p>
+                <h1 class="text-3xl font-extrabold text-indigo-500 m-0">
+                    <span class="text-pink-400 mr-2">🌟</span> YCL四级核心学习站
+                </h1>
+                <p class="text-sm text-gray-400 mt-1 font-medium">本阶段Python基础：输入/输出与变量</p>
             </div>
         </header>
 
         <!-- 主要内容区域 -->
-        <main class="flex-grow pt-8 pb-4">
+        <main class="flex-grow pt-6 pb-4">
             <div class="max-w-3xl mx-auto px-4 w-full sm:px-6 lg:px-8">
 
-                <!-- 老师的话 / 致家长致孩子 -->
+                <!-- 1. 老师的暖心寄语 -->
                 <section class="mb-10">
-                    <h2 class="text-xl font-bold text-gray-800 border-b-2 border-indigo-200 pb-2 mb-6">
-                        老师的话
+                    <h2 class="text-xl font-bold text-gray-700 border-b-2 border-pink-200 pb-2 mb-6 flex items-center">
+                        <span class="text-2xl mr-2 text-pink-500">💌</span> 老师寄语：赛考不焦虑，认真学习，一定没问题
                     </h2>
                     
-                    <!-- 寄语卡片 -->
-                    <div class="bg-white p-6 rounded-3xl shadow-2xl border-t-8 border-indigo-600 transform hover:shadow-xl transition duration-300">
-                        <p class="text-lg font-semibold text-gray-900 mb-4">
-                            亲爱的家长：
+                    <div class="cute-card bg-white p-6 border-t-8 border-pink-400">
+                        <p class="text-lg font-bold text-pink-500 mb-3 flex items-center">
+                            <span class="mr-2">👩‍🏫</span> 亲爱的家长、小朋友：
                         </p>
                         
-                        <p class="text-gray-700 mb-6 leading-relaxed">
-                            咱们进入了赛考的备战期。我特意做了这个小网站，里面有我总结的英语单词和重难点知识。
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            针对 YCL 四级考试，我为您和孩子准备了这个小网站，里面有我总结的核心单词和重难点知识，这是一个可视化的复习界面。这是我自己做的，后面会跟着孩子的课程持续更新！
                         </p>
 
-                        <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-xl mb-6">
-                            <p class="font-bold text-indigo-800 flex items-start m-0">
-                                <span class="text-xl mr-2 mt-0.5">📢</span> <span>关于焦虑：</span>
+                        <!-- 定心丸区块 -->
+                        <div class="bg-indigo-50 border-l-4 border-indigo-300 p-4 rounded-xl mb-4">
+                            <p class="font-bold text-indigo-600 flex items-start m-0">
+                                <span class="text-xl mr-2 mt-0.5">✨</span> <span>给您吃颗定心丸：</span>
                             </p>
                             <p class="text-sm text-indigo-700 mt-2 leading-snug m-0">
-                                我想给您吃一颗定心丸。虽然是赛考，但只要跟着我认真复习，孩子绝对没问题！这个界面也是为了给孩子一个可视化的复习环境。
+                                无论是否报名本次赛考，知识学到手才是最重要的。这个宝典里的内容都是赛考的重点，只要跟着我认真复习，学的扎实了，咱们后面遇到任何编程挑战都没问题！我相信跟着我认真复习，赛考没问题！
                             </p>
                         </div>
-
-                        <p class="text-gray-600 leading-relaxed text-sm m-0">
-                            如果您没报名这次赛考也不要紧，知识学到手才是最重要的。这里也是重点知识的汇总，学扎实了，后面遇到什么比赛都能轻松应对！
-                        </p>
                     </div>
                 </section>
 
-                <!-- L1-1 学习进度 / 统计概览 -->
-                <section>
-                    <h2 class="text-xl font-bold text-gray-800 border-b-2 border-indigo-200 pb-2 mb-6">
-                        L1-1 学习进度 <span class="text-base font-normal text-green-600 ml-2">(本周目标进行中)</span>
+                <!-- 2. 英语单词 (读+背区分) -->
+                <section id="vocabulary-section" class="mb-10">
+                    <h2 class="text-xl font-bold text-gray-700 border-b-2 border-yellow-300 pb-2 mb-6 flex items-center">
+                        <span class="text-2xl mr-2 text-yellow-500">📖</span> 核心词汇
+                    </h2>
+                    <div class="cute-card bg-white p-5 border-l-8 border-yellow-400">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            
+                            <!-- 核心编程关键词 -->
+                            <div class="p-3 bg-red-100 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-red-800">input</p>
+                                        <p class="text-sm font-medium text-red-500">[ˈɪnpʊt]</p>
+                                    </div>
+                                    <p class="text-xs text-red-600 font-semibold">n./v. 输入 (获取数据)</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-red-100 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-red-800">int</p>
+                                        <p class="text-sm font-medium text-red-500">[ɪnt]</p>
+                                    </div>
+                                    <p class="text-xs text-red-600 font-semibold">n. 整数 (数据类型)</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-gray-800">print</p>
+                                        <p class="text-sm font-medium text-red-500">[prɪnt]</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">v.打印,输出</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            
+                            <!-- 条件语句关键词 (L1-2) -->
+                            <div class="p-3 bg-indigo-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-indigo-800">if</p>
+                                        <p class="text-sm font-medium text-red-500">[ɪf]</p>
+                                    </div>
+                                    <p class="text-xs text-indigo-600 font-semibold">conj. 如果 (条件判断)</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-indigo-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-indigo-800">else</p>
+                                        <p class="text-sm font-medium text-red-500">[els]</p>
+                                    </div>
+                                    <p class="text-xs text-indigo-600 font-semibold">conj. 否则 (条件判断)</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-indigo-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-indigo-800">elif</p>
+                                        <p class="text-sm font-medium text-red-500">[ˈeliːf]</p>
+                                    </div>
+                                    <p class="text-xs text-indigo-600 font-semibold">conj. 否则如果 (多重判断)</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+
+                            <!-- 其他常用词汇 -->
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-gray-800">weight</p>
+                                        <p class="text-sm font-medium text-red-500">[weit]</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">n.重量,分量</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <div class="flex items-baseline space-x-1">
+                                        <p class="text-lg font-bold text-gray-800">height</p>
+                                        <p class="text-sm font-medium text-red-500">[hait]</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">n.高度,高处</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-lg font-bold text-gray-800">left</p>
+                                    <p class="text-xs text-gray-500">n.左边,左转弯</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-lg font-bold text-gray-800">right</p>
+                                    <p class="text-xs text-gray-500">n.右边</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-lg font-bold text-gray-800">up</p>
+                                    <p class="text-xs text-gray-500">n.上面,高处</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                            <div class="p-3 bg-yellow-50 rounded-xl flex justify-between items-center shadow-sm">
+                                <div>
+                                    <p class="text-lg font-bold text-gray-800">down</p>
+                                    <p class="text-xs text-gray-500">adv.下降,向下</p>
+                                </div>
+                                <button class="p-2 rounded-full bg-white shadow-md tts-disabled-button" title="语音功能已禁用">🔊</button>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center text-sm text-gray-400">
+                            * 🔊 按钮在当前环境不可用。
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. 知识点与例题精讲 (新标题) -->
+                <section id="knowledge-section" class="mb-10">
+                    <h2 class="text-xl font-bold text-gray-700 border-b-2 border-cyan-300 pb-2 mb-6 flex items-center">
+                        <span class="text-2xl mr-2 text-cyan-500">💡</span> 本阶段已学知识点
                     </h2>
                     
-                    <!-- 进度统计卡片组：三列布局，移动端和桌面端都美观 -->
-                    <div class="grid grid-cols-3 gap-4 sm:gap-6">
+                    <!-- 知识点卡片 -->
+                    <div class="cute-card bg-white p-6 mb-8 border-l-8 border-cyan-400">
+                        <h3 class="text-xl font-extrabold text-cyan-700 mb-4 flex items-center">
+                            <span class="text-2xl mr-2">📌</span> 核心知识点回顾
+                        </h3>
+                        <ol class="list-decimal space-y-3 ml-4 text-gray-700">
+                            <li>
+                                <p class="font-bold">print()命令：</p>
+                                <p class="text-sm">print是打印的意思。这个命令由英文单词 `print` 和一对英文小括号组成，在括号中填入内容，就能将括号中的内容打印到输出区。</p>
+                            </li>
+                            <li>
+                                <p class="font-bold">print()命令的规则：</p>
+                                <p class="text-sm">规则1：打印文字时，文字两侧需要加上**引号**。规则2：在括号中填写数学算式，会计算并打印出算式的结果。</p>
+                            </li>
+                            <li>
+                                <p class="font-bold">变量：</p>
+                                <p class="text-sm">变量就像一个盒子，可以存储各种各样的数据。只需要使用一个等号，就可以将数据装进盒子里。</p>
+                            </li>
+                            <li>
+                                <p class="font-bold">变量的规则：</p>
+                                <p class="text-sm">规则1：使用 print() 语句打印变量时，变量两侧**不需要**加上引号。规则2：我们可以在程序中反复使用变量，也可以使用变量进行数学运算。</p>
+                            </li>
+                        </ol>
                         
-                        <!-- 核心单词 -->
-                        <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg flex flex-col items-center text-center border-b-4 border-yellow-500 hover:shadow-xl transition duration-200 cursor-pointer">
-                            <p class="text-4xl sm:text-5xl font-extrabold text-yellow-600 mb-1 leading-none">7</p>
-                            <p class="text-sm font-medium text-gray-600 m-0 mt-2">核心单词</p>
+                        <div class="mt-6 bg-rose-50 p-4 rounded-xl border-l-4 border-rose-400">
+                             <h4 class="font-bold text-rose-600 mb-2">⚠️ 重难点强调</h4>
+                             <ul class="list-disc ml-4 text-sm text-gray-600 space-y-1">
+                                <li>print()命令打印文字时，文字两侧要加上**单引号**或**双引号**。</li>
+                                <li>**input()** 函数接受的任何输入都是**字符串**类型，如果需要进行数学运算，必须使用 **int()** 或 **float()** 进行转换。</li>
+                            </ul>
+                        </div>
+
+                         <!-- 语音讲解占位符 -->
+                        <div class="mt-6 text-center">
+                            <button class="bg-gray-300 text-gray-600 font-bold py-3 px-8 rounded-full transition duration-150 shadow-md tts-disabled-button" disabled title="TTS语音功能因权限问题暂时禁用">
+                                🎤 老师语音讲解 (暂时禁用)
+                            </button>
+                            <p class="text-xs text-gray-400 mt-2">TTS语音功能因环境权限问题暂时无法使用，请见谅。</p>
+                        </div>
+                    </div>
+
+                    <!-- 交互式 例题练习卡片 (10题) -->
+                    <h3 id="questionnaire" class="text-xl font-extrabold text-indigo-700 mb-4 flex items-center mt-10">
+                        <span class="text-2xl mr-2">🎯</span> 课本例题练习 (共10题)
+                    </h3>
+
+                    <div class="space-y-6" id="questionnaire-content">
+                        
+                        <!-- 例题 1：print 打印文字与变量的区分 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q1">
+                            <p class="font-semibold text-gray-800 mb-4">1. 已知 `name = '小明'`。要输出结果 'name'，应该使用的正确代码是（ ）</p>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q1', 'A', 'D', 'print(name)会输出变量name的值“小明”，而不是字符串“name”。')">A. print(name)</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q1', 'B', 'D', 'print name 缺少英文小括号，格式错误。')">B. print name</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q1', 'C', 'D', 'print 的函数名必须是小写字母。')">C. PRINT('name')</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q1', 'D', 'D', '要打印纯文本字符串，必须用引号包裹，即 print("name") 或 print(\'name\')。')">D. print('name')</div>
+                            </div>
+                            <div id="explanation-q1" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 2：数学运算优先级 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q2">
+                            <p class="font-semibold text-gray-800 mb-4">2. 执行代码 `print(8 - 2 * 3)` 的输出结果是（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print(8 - 2 * 3)</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q2', 'A', 'C', '先算乘法 2 * 3 = 6，再算减法 8 - 6 = 2。')">A. 18</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q2', 'B', 'C', '先算乘法 2 * 3 = 6，再算减法 8 - 6 = 2。')">B. 24</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q2', 'C', 'C', '根据数学运算规则，先乘除后加减：8 - (2 * 3) = 8 - 6 = 2。')">C. 2</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q2', 'D', 'C', '先算乘法 2 * 3 = 6，再算减法 8 - 6 = 2。')">D. 12</div>
+                            </div>
+                            <div id="explanation-q2" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 3：input() 函数返回值类型 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q3">
+                            <p class="font-semibold text-gray-800 mb-4">3. `input()` 函数接收用户输入后，返回的数据类型是什么？</p>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q3', 'A', 'B', '无论用户输入的是数字还是文字，input() 都会将其作为字符串（str）返回。')">A. 整数 (int)</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q3', 'B', 'B', 'input() 函数始终将用户输入的内容作为字符串（str）类型返回。')">B. 字符串 (str)</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q3', 'C', 'B', 'input() 不会自动判断是数字还是文字。')">C. 小数 (float)</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q3', 'D', 'B', '布尔类型只有 True 或 False 两个值。')">D. 布尔值 (bool)</div>
+                            </div>
+                            <div id="explanation-q3" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
                         </div>
                         
-                        <!-- 知识点 -->
-                        <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg flex flex-col items-center text-center border-b-4 border-blue-500 hover:shadow-xl transition duration-200 cursor-pointer">
-                            <p class="text-4xl sm:text-5xl font-extrabold text-blue-600 mb-1 leading-none">4</p>
-                            <p class="text-sm font-medium text-gray-600 m-0 mt-2">知识点</p>
+                        <!-- 例题 4：字符串连接 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q4">
+                            <p class="font-semibold text-gray-800 mb-4">4. 执行代码 `print('YCL' + '4级')` 的输出结果是（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print('YCL' + '4级')</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q4', 'A', 'B', '加号(+)连接字符串会把它们紧密地拼接在一起，即 YCL4级。')">A. YCL 4级</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q4', 'B', 'B', '两个字符串相加是连接操作，结果是把它们连起来：YCL4级。')">B. YCL4级</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q4', 'C', 'B', '字符串不能进行数学上的求和。')">C. 错误</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q4', 'D', 'B', '只有用逗号分隔，print 才会自动添加空格。')">D. YCL+4级</div>
+                            </div>
+                            <div id="explanation-q4" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 5：变量重赋值 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q5">
+                            <p class="font-semibold text-gray-800 mb-4">5. 执行下列代码后，`print(score)` 的输出结果是（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 score = 10
+2 score = 50 - 30
+3 score = 30</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q5', 'A', 'C', '变量会被最后一次赋值覆盖。')">A. 10</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q5', 'B', 'C', '第二行 score = 20，但第三行又被覆盖为 30。')">B. 20</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q5', 'C', 'C', 'Python 代码按顺序执行，变量遵循“后赋有效”原则，最终值为 30。')">C. 30</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q5', 'D', 'C', '不会计算所有赋值的总和。')">D. 60</div>
+                            </div>
+                            <div id="explanation-q5" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 6：变量命名规则 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q6">
+                            <p class="font-semibold text-gray-800 mb-4">6. 下列选项中，哪个**不是**一个合法的变量名（ ）</p>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q6', 'A', 'B', '变量名不能以数字开头。')">A. my_name</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q6', 'B', 'B', '变量名不能以数字开头，因此 1st_rank 是非法的。')">B. 1st_rank</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q6', 'C', 'B', '合法的变量名可以包含字母、数字和下划线，但不允许空格或减号等特殊符号。')">C. user rank</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q6', 'D', 'B', '合法的变量名可以包含字母、数字和下划线。')">D. total2</div>
+                            </div>
+                            <div id="explanation-q6" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 7：input() 与 int() 转换 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q7">
+                            <p class="font-semibold text-gray-800 mb-4">7. 如果用户输入 `5`，执行下列代码的输出结果是（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 num = input() # 用户输入 5
+2 num = int(num)
+3 print(num + 5)</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q7', 'A', 'D', 'input() 得到 "5"，int("5") 转换成整数 5，然后 5 + 5 = 10。')">A. 55</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q7', 'B', 'D', 'input() 得到 "5"，int("5") 转换成整数 5，然后 5 + 5 = 10。')">B. 5</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q7', 'C', 'D', '如果只执行 print("5" + 5)，会因为类型不同而报错。但这里用 int() 转换了。')">C. 错误</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q7', 'D', 'D', 'input() 得到字符串 "5"，第 2 行将其转换为整数 5，第 3 行计算 5 + 5 = 10。')">D. 10</div>
+                            </div>
+                            <div id="explanation-q7" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 8：print 打印多个值（逗号分隔） -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q8">
+                            <p class="font-semibold text-gray-800 mb-4">8. 执行代码 `print('距离', 100, '米')` 的输出结果是（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print('距离', 100, '米')</pre>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q8', 'A', 'B', 'print()函数用逗号分隔多个内容时，默认会用空格连接。')">A. 距离100米</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q8', 'B', 'B', 'print() 使用逗号分隔多个参数时，会在参数之间自动添加一个空格。')">B. 距离 100 米</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q8', 'C', 'B', '参数必须用逗号分隔，否则会报错。')">C. 距离+100+米</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q8', 'D', 'B', 'print() 会打印出所有内容，而不是只打印数字。')">D. 100</div>
+                            </div>
+                            <div id="explanation-q8" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                        <!-- 例题 9：字符串乘法 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q9">
+                            <p class="font-semibold text-gray-800 mb-4">9. 执行代码 `print('A' * 3 + 'B' * 2)` 的输出结果是（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">print('A' * 3 + 'B' * 2)</pre>
+                            <div class="grid grid-cols-4 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q9', 'A', 'C', '字符串乘法是重复，加法是连接，结果是 AAABB。')">A. AAAAA</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q9', 'B', 'C', '字符串重复后再连接：\'A\'*3 得到 \'AAA\'，\'B\'*2 得到 \'BB\'，连接后是 AAABB。')">B. 3A2B</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q9', 'C', 'C', '首先计算重复：\'A\'*3 = \'AAA\'，\'B\'*2 = \'BB\'。然后连接：\'AAA\' + \'BB\' = \'AAABB\'。')">C. AAABB</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q9', 'D', 'C', '字符串乘法是重复，不是乘积 6。')">D. 6</div>
+                            </div>
+                            <div id="explanation-q9" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
                         </div>
                         
-                        <!-- 真题 -->
-                        <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg flex flex-col items-center text-center border-b-4 border-green-500 hover:shadow-xl transition duration-200 cursor-pointer">
-                            <p class="text-4xl sm:text-5xl font-extrabold text-green-600 mb-1 leading-none">3</p>
-                            <p class="text-sm font-medium text-gray-600 m-0 mt-2">真题</p>
+                        <!-- 例题 10：未定义变量引发的错误 -->
+                        <div class="example-question cute-card bg-white p-4 border-l-8 border-indigo-300" data-question-id="q10">
+                            <p class="font-semibold text-gray-800 mb-4">10. 执行下列代码会发生什么（ ）</p>
+                            <pre class="bg-gray-800 text-white p-3 rounded-xl text-xs mb-3">1 print(count)
+2 count = 100</pre>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-gray-600 options-container">
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="A" onclick="checkAnswer('q10', 'A', 'C', 'Python 代码按顺序从上往下执行。')">A. 输出 100</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="B" onclick="checkAnswer('q10', 'B', 'C', '变量 x 尚未被赋值（定义），程序会在第一行执行时立即报错。')">B. 输出 count</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="C" onclick="checkAnswer('q10', 'C', 'C', '代码在第 1 行执行时，变量 count 还没有被赋值，会引发 NameError（名称错误），程序终止。')">C. 程序报错</div>
+                                <div class="option-item p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-indigo-100" data-option="D" onclick="checkAnswer('q10', 'D', 'C', '变量 x 尚未被赋值，Python 不会自动将未赋值的变量初始化。')">D. 输出 0</div>
+                            </div>
+                            <div id="explanation-q10" class="hidden mt-4 p-4 rounded-xl border-t-4 bg-green-50 text-sm explanation-block">
+                                <p class="font-bold text-green-700 mb-1">✅ 答案与解析</p>
+                                <p class="font-bold text-gray-800">正确答案：<span class="correct-option-label text-green-600"></span></p>
+                                <p class="text-gray-700 mt-1 explanation-text"></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 4. 知识点图片展示区 (新模块) -->
+                <section class="mb-10">
+                    <h2 class="text-xl font-bold text-gray-700 border-b-2 border-green-300 pb-2 mb-6 flex items-center">
+                        <span class="text-2xl mr-2 text-green-500">🖼️</span> 知识点图片辅导
+                    </h2>
+                    <div class="cute-card bg-gray-50 p-6 border-t-8 border-green-400">
+                        <p class="text-sm text-gray-600 mb-4">
+                            您可以在下方区域查看所有上传的知识点图片 (.jpg, .png, .jpeg)，上下滑动即可翻页。
+                        </p>
+                        <div id="knowledge-image-gallery" class="space-y-6">
+                            <!-- 图片将由 JavaScript 加载到这里 -->
+                            <div class="text-center p-10 text-gray-500">
+                                正在加载图片...
+                            </div>
                         </div>
                     </div>
                 </section>
+                
             </div>
         </main>
 
@@ -104,37 +492,176 @@
         <footer class="fixed-footer fixed bottom-0 w-full bg-white border-t border-gray-100">
             <nav class="max-w-3xl mx-auto flex justify-around items-center h-16 px-4 sm:px-6 lg:px-8">
                 
-                <!-- 首页 -->
-                <a href="#" class="flex flex-col items-center text-indigo-600 font-bold p-1 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <!-- 首页 (活跃状态) -->
+                <a href="#top" class="flex flex-col items-center text-indigo-600 font-extrabold p-1 rounded-lg relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     <span class="text-xs mt-0.5">首页</span>
                 </a>
                 
                 <!-- 单词 -->
-                <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V15a2 2 0 0 1 2-2h14"/><path d="M4 22c-1.5 0-3-1.5-3-3s1.5-3 3-3 3 1.5 3 3-1.5 3-3 3z"/><path d="M16 8h2a2 2 0 0 1 2 2v7.5"/><path d="M12 2c1.333 0 2 0 2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>
+                <a href="#vocabulary-section" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 p-1 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V15a2 2 0 0 1 2-2h14"/><path d="M4 22c-1.5 0-3-1.5-3-3s1.5-3 3-3 3 1.5 3 3-1.5 3-3 3z"/><path d="M16 8h2a2 2 0 0 1 2 2v7.5"/><path d="M12 2c1.333 0 2 0 2 2v10a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>
                     <span class="text-xs mt-0.5">单词</span>
                 </a>
                 
                 <!-- 知识点 -->
-                <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .9-1.6 1.8-1.6 1.1 0 2 1.5 2 3s-.9 3-2 3c-.7 0-1.4-.4-1.8-1"/><path d="M17 19.3V21a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-1.7"/><path d="M13 3l.4.7c.3.5.7 1.2 1.3 1.7a2 2 0 0 0 1.9.8h.4c1 0 1.6.4 1.9.9l.4.8c.3.5.5 1.2.6 1.9v.9"/><path d="M7 3l-.4.7c-.3.5-.7 1.2-1.3 1.7a2 2 0 0 0-1.9.8h-.4c-1 0-1.6.4-1.9.9l-.4.8c-.3.5-.5 1.2-.6 1.9v.9"/><path d="M12 22a7 7 0 0 1-7-7c0-1.8.6-3.5 1.7-4.8A8 8 0 0 1 12 5.5a8 8 0 0 1 5.3 1.7c1.1 1.3 1.7 3 1.7 4.8a7 7 0 0 1-7 7z"/><path d="M9 15h6"/><path d="M12 18v-3"/></svg>
+                <a href="#knowledge-section" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 p-1 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 1-7-7c0-1.8.6-3.5 1.7-4.8A8 8 0 0 1 12 5.5a8 8 0 0 1 5.3 1.7c1.1 1.3 1.7 3 1.7 4.8a7 7 0 0 1-7 7z"/><path d="M9 15h6"/><path d="M12 18v-3"/><path d="M13 3l.4.7c.3.5.7 1.2 1.3 1.7a2 2 0 0 0 1.9.8h.4c1 0 1.6.4 1.9.9l.4.8c.3.5.5 1.2.6 1.9v.9"/><path d="M7 3l-.4.7c-.3.5-.7 1.2-1.3 1.7a2 2 0 0 0-1.9.8h-.4c-1 0-1.6.4-1.9.9l-.4.8c-.3.5-.5 1.2-.6 1.9v.9"/></svg>
                     <span class="text-xs mt-0.5">知识点</span>
                 </a>
                 
-                <!-- 真题 -->
-                <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                    <span class="text-xs mt-0.5">真题</span>
-                </a>
-                
-                <!-- 留言 -->
-                <a href="#" class="flex flex-col items-center text-gray-500 hover:text-indigo-600 p-1 rounded-lg transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8L3 21z"/></svg>
-                    <span class="text-xs mt-0.5">留言</span>
+                <!-- 例题/真题 -->
+                <a href="#questionnaire" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 p-1 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    <span class="text-xs mt-0.5">例题</span>
                 </a>
             </nav>
         </footer>
     </div>
+
+    <!-- JavaScript 交互逻辑 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadKnowledgeImages();
+            // 确保导航链接在DOM加载后立即生效
+            setupNavigation();
+        });
+
+        // 模拟的文件列表，用于展示图片功能。
+        // 在实际环境中，这个列表应通过 Canvas 环境提供的 API 动态获取。
+        const MOCK_IMAGE_FILES = [
+            'image_28cce6.png', // 假设这是您上传的图片
+            'knowledge_point_1.jpg', // 模拟其他图片
+            'knowledge_point_2.png',
+            'sample_chart.jpeg'
+        ];
+
+        /**
+         * 动态加载知识点图片到展示区。
+         */
+        function loadKnowledgeImages() {
+            const gallery = document.getElementById('knowledge-image-gallery');
+            gallery.innerHTML = ''; // 清空加载提示
+
+            const imageFiles = MOCK_IMAGE_FILES.filter(file => 
+                file.endsWith('.jpg') || file.endsWith('.png') || file.endsWith('.jpeg')
+            );
+
+            if (imageFiles.length === 0) {
+                gallery.innerHTML = `
+                    <div class="text-center p-10 text-gray-500 bg-white rounded-xl">
+                        <span class="text-4xl block mb-2">😭</span>
+                        <p class="font-semibold">未找到任何知识点图片。</p>
+                        <p class="text-sm">请上传 .jpg, .png 或 .jpeg 文件到根目录。</p>
+                    </div>
+                `;
+                return;
+            }
+
+            imageFiles.forEach((file, index) => {
+                const container = document.createElement('div');
+                container.className = 'knowledge-image-container mb-8 p-4 bg-white rounded-2xl shadow-lg';
+                container.innerHTML = `
+                    <p class="text-sm text-indigo-500 font-bold mb-3">图片 ${index + 1} / ${imageFiles.length} (${file})</p>
+                    <img src="./${file}" 
+                         alt="知识点图片 ${index + 1}" 
+                         class="knowledge-image" 
+                         loading="lazy"
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x400/FFD1DC/6B46C1?text=图片加载失败: ${file}'"
+                    />
+                `;
+                gallery.appendChild(container);
+            });
+        }
+        
+        /**
+         * 修复底部导航栏的滚动功能。
+         */
+        function setupNavigation() {
+            document.querySelectorAll('footer a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // 阻止默认的哈希跳转行为
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // 使用平滑滚动到目标元素
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start' // 滚动到元素的顶部
+                        });
+                    }
+                });
+            });
+        }
+
+
+        /**
+         * 检查选择的答案并更新 UI。
+         */
+        function checkAnswer(questionId, selectedOption, correctAnswer, explanation) {
+            // 找到当前问题容器
+            const questionElement = document.querySelector(`[data-question-id="${questionId}"]`);
+            if (!questionElement) return;
+
+            // 检查是否已经作答
+            if (questionElement.dataset.answered === 'true') {
+                return; // 已经回答过了，忽略点击
+            }
+            
+            // 标记已作答，防止重复点击
+            questionElement.dataset.answered = 'true';
+
+            // 找到所有选项、答案解析区
+            const options = questionElement.querySelectorAll('.option-item');
+            const explanationBlock = document.getElementById(`explanation-${questionId}`);
+            
+            let isCorrect = selectedOption === correctAnswer;
+
+            // 遍历所有选项并处理样式
+            options.forEach(option => {
+                const optionLabel = option.dataset.option;
+                option.classList.remove('cursor-pointer', 'hover:bg-indigo-100', 'bg-gray-50'); // 移除交互样式
+
+                if (optionLabel === selectedOption) {
+                    // 处理用户选择的选项
+                    if (isCorrect) {
+                        // 选择了正确答案
+                        option.classList.add('bg-green-300', 'text-green-900', 'font-bold', 'ring-2', 'ring-green-600');
+                    } else {
+                        // 选择了错误答案
+                        option.classList.add('bg-red-300', 'text-red-900', 'font-bold', 'line-through', 'ring-2', 'ring-red-600');
+                    }
+                } else if (optionLabel === correctAnswer) {
+                    // 正确答案
+                    option.classList.add('bg-green-100', 'text-green-700', 'font-semibold', 'ring-1', 'ring-green-500');
+                } else {
+                    // 其他未选的错误答案
+                    option.classList.add('bg-gray-200', 'text-gray-400');
+                }
+            });
+
+            // 更新解析区内容并显示
+            const colorClass = isCorrect ? 'bg-green-50 border-green-400' : 'bg-red-50 border-red-400';
+            const labelColorClass = isCorrect ? 'text-green-600' : 'text-red-600';
+            const icon = isCorrect ? '✅' : '❌';
+            
+            // 设置解析区样式
+            explanationBlock.classList.remove('bg-green-50', 'bg-red-50', 'border-green-400', 'border-red-400');
+            explanationBlock.classList.add(colorClass);
+            
+            // 设置标题和答案
+            explanationBlock.querySelector('.font-bold.text-green-700').innerHTML = `${icon} ${isCorrect ? '恭喜你，回答正确！' : '回答错误，再回顾一下知识点吧！'}`;
+            explanationBlock.querySelector('.correct-option-label').textContent = correctAnswer;
+            explanationBlock.querySelector('.correct-option-label').classList.remove('text-green-600', 'text-red-600');
+            explanationBlock.querySelector('.correct-option-label').classList.add(labelColorClass);
+            explanationBlock.querySelector('.explanation-text').textContent = explanation;
+
+            // 显示解析区
+            explanationBlock.classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
